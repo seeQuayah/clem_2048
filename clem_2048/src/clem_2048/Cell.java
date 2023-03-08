@@ -8,7 +8,7 @@ import java.time.temporal.ChronoUnit;
 public class Cell {
 
     
-    private final Instant debutTimer;
+    private Instant debutTimer;
     private final int size;
     private int tempsDeVie;
     private int x;
@@ -36,6 +36,12 @@ public class Cell {
     public void setContenu(int contenu) {
         this.contenu = contenu;
         this.tempsDeVie = Regles.RecupererTempsDeVie(contenu);
+        if (contenu == 8) {
+            System.out.printf("temps de vie %d", this.tempsDeVie);
+        }
+        if (tempsDeVie != -1) {
+            this.debutTimer = Instant.now();
+        }
     }
     
     public void tuerCellule() {
@@ -43,7 +49,7 @@ public class Cell {
         this.tempsDeVie = -1;
     }
     
-    public boolean isAlive() {
+    public boolean estVivante() {
         if (tempsDeVie == -1)
             return true;
         Instant now = Instant.now();

@@ -38,11 +38,16 @@ public class Jeu {
         while (true) {
             System.out.println("Entrez la direction: d, g, h, b");
             char direction = scanner.next().charAt(0);
+            grille.tuerCellulesExpirees();
             bougerGrille(grille, direction);
             grille.resetupGrille();
             grille.afficherGrille();
             grille.generationCellule();
             grille.afficherGrille();
+            if (grille.grilleBloquee()) {
+                System.out.println("Perdu. La grille est bloquée");
+                break;
+            }
             if (grille.checkSiTermine(scoreMax)) {
                 System.out.println("Gagné!");
                 break;

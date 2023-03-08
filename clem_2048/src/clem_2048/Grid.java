@@ -30,6 +30,9 @@ public class Grid {
         setupGrille(size, cellSize);
     }
     
+    public int getSize() {
+        return size;
+    }
     private Cell getCellule(int y, int x) {
         return this.grille[y][x];
     }
@@ -43,13 +46,6 @@ public class Grid {
                     result.add(new int[] {i, j});
                 }
             }
-        }
-        for (int i = 0; i < result.size(); i++) {
-            System.out.print(result.get(i)[0]);
-             System.out.print("-");
-            System.out.print(result.get(i)[1]);
-            System.out.print(" ");
-            System.out.println("");
         }
         return result;
     }
@@ -77,12 +73,6 @@ public class Grid {
         int index1 = random.nextInt(coorCellulesVides.size());
         int [] coord = coorCellulesVides.get(index1);
         this.grille[coord[0]][coord[1]].setContenu(2);
-         System.out.print("I picked");
-        System.out.print(coord[0]);
-        System.out.print("-");
-        System.out.print(coord[1]);
-        System.out.print(" ");
-        System.out.println("");
     }
     
     public void resetupGrille() {
@@ -93,6 +83,32 @@ public class Grid {
             }
         }
     }
+    public boolean grilleBloquee() {
+        for (int i = 0; i < grille.length; i++) {
+        for (int j = 0; j < grille[i].length; j++) {
+            if (grille[i][j].estVide()) {
+                return false; // La grille n'est pas bloquée car il y a des cases vides
+            }
+        }
+    }
+    
+    // Vérifier si des mouvements supplémentaires sont possibles
+    for (int i = 0; i < grille.length; i++) {
+        for (int j = 0; j < grille[i].length; j++) {
+            int valeur = grille[i][j].getContenu();
+            
+            // Vérifier si la case actuelle est adjacente à une case ayant la même valeur
+            if ((i > 0 && grille[i-1][j].getContenu() == valeur) ||
+                (i < grille.length-1 && grille[i+1][j].getContenu() == valeur) ||
+                (j > 0 && grille[i][j-1].getContenu() == valeur) ||
+                (j < grille[i].length-1 && grille[i][j+1].getContenu() == valeur)) {
+                return false; // La grille n'est pas bloquée car un mouvement est possible
+            }
+        }
+    }
+    return true;
+}
+    
   public void deplacerBas() {
     for (int j = 0; j < size; j++) {
         for (int i = size-2; i >= 0; i--) {
@@ -179,36 +195,53 @@ public class Grid {
     }
 
 
-    public void BougerGrille(Regles.Direction direction) {
-        
+    public void tuerCellulesExpirees() {
+        for (int i = 0; i < size; i++) {
+            for (int j =0; j < size; j++) {
+                Cell cellule = grille[i][j];
+                if (!cellule.estVivante()) {
+                    cellule.tuerCellule();
+                }
+            }
+        }
     }
 
     public void afficherGrille() {
-    System.out.print("+");
-    for (int i = 0; i < size * (size * 2) + 2; i++) {
-        System.out.print("-");
-    }
-    System.out.println("+");
-
-    for (int i = 0; i < size; i++) {
-        System.out.print("|");
-        for (int j = 0; j < size; j++) {
-            Cell cellule = grille[i][j];
-            String contenu = cellule.estVide() ? " " : Integer.toString(cellule.getContenu());
-            System.out.printf(" %-" + (size * 2 - 1) + "s|", contenu);
-        }
-        System.out.println();
-
         System.out.print("+");
-        for (int j = 0; j < size; j++) {
-            for (int k = 0; k < size * 2; k++) {
-                System.out.print("-");
-            }
-            System.out.print("+");
+        for (int i = 0; i < size * (size * 2) + 2; i++) {
+            System.out.print("-");
         }
-        System.out.println();
+        System.out.println("+");
+
+        for (int i = 0; i < size; i++) {
+            System.out.print("|");
+            for (int j = 0; j < size; j++) {
+                Cell cellule = grille[i][j];
+                String contenu = cellule.estVide() ? " " : Integer.toString(cellule.getContenu());
+                System.out.printf(" %-" + (size * 2 - 1) + "s|", contenu);
+            }
+            System.out.println();
+
+            System.out.print("+");
+            for (int j = 0; j < size; j++) {
+                for (int k = 0; k < size * 2; k++) {
+                    System.out.print("-");
+                }
+                System.out.print("+");
+            }
+            System.out.println();
+        }
     }
-}
     
+    public String versSauvegarde() {
+        String resultat = "";
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                resultat += String.valueOf(grille[i][j]);
+                resultat += ":";
+            }
+        }
+        return resultat;
+    }
 
 }

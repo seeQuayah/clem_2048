@@ -12,8 +12,8 @@ import java.util.HashMap;
  */
 public class Regles {
     public static HashMap<Integer, Integer> MapTempsDeVie = new HashMap<>() {{
-        put(8, 20);
-         put(32, 20);
+         put(8, 5);
+         put(32, 5);
     }};
     
     public static int RecupererTempsDeVie(int numeroCellule) {
@@ -21,13 +21,6 @@ public class Regles {
             return MapTempsDeVie.get(numeroCellule);
         }
         return -1;
-    }
-    public static enum Direction {
-        DROITE,
-        GAUCHE,
-        HAUT,
-        BAS,
-        STATIQUE,
     }
     
 }
