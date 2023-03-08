@@ -119,7 +119,7 @@ public class Grid {
             if (!grille[i][j].estVide()) {
                 int k = i;
                 while (k < size-1 && grille[k+1][j].estVide()) {
-                    grille[k+1][j].setContenu(grille[k][j].getContenu());
+                    grille[k+1][j].setContenu(grille[k][j]);
                     grille[k][j].setContenu(0);
                     k++;
                 }
@@ -140,7 +140,7 @@ public class Grid {
                 if (!grille[i][j].estVide()) {
                     int k = j;
                     while (k > 0 && grille[i][k-1].estVide()) {
-                        grille[i][k-1].setContenu(grille[i][k].getContenu());
+                        grille[i][k-1].setContenu(grille[i][k]);
                         grille[i][k].setContenu(0);
                         k--;
                     }
@@ -161,7 +161,7 @@ public class Grid {
                 if (!grille[i][j].estVide()) {
                     int k = j;
                     while (k < size-1 && grille[i][k+1].estVide()) {
-                        grille[i][k+1].setContenu(grille[i][k].getContenu());
+                        grille[i][k+1].setContenu(grille[i][k]);
                         grille[i][k].setContenu(0);
                         k++;
                     }
@@ -183,7 +183,7 @@ public class Grid {
                 if (!grille[i][j].estVide()) {
                     int k = i;
                     while (k > 0 && grille[k-1][j].estVide()) {
-                        grille[k-1][j].setContenu(grille[k][j].getContenu());
+                        grille[k-1][j].setContenu(grille[k][j]);
                         grille[k][j].setContenu(0);
                         k--;
                     }

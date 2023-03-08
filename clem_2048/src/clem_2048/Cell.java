@@ -36,12 +36,24 @@ public class Cell {
     public void setContenu(int contenu) {
         this.contenu = contenu;
         this.tempsDeVie = Regles.RecupererTempsDeVie(contenu);
-        if (contenu == 8) {
-            System.out.printf("temps de vie %d", this.tempsDeVie);
-        }
+       
         if (tempsDeVie != -1) {
             this.debutTimer = Instant.now();
         }
+    }
+    
+    public void setContenu(Cell cell) {
+        this.contenu = cell.getContenu();
+        this.debutTimer = cell.getTimer();
+        this.tempsDeVie = cell.tempsDeVie;
+    }
+    public void setTimer(Instant timer) {
+        this.debutTimer = timer;
+    }
+    
+    
+    public Instant getTimer() {
+        return debutTimer;
     }
     
     public void tuerCellule() {
