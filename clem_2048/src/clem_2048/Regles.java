@@ -11,7 +11,10 @@ import java.util.HashMap;
  * @author jc
  */
 public class Regles {
-    public static HashMap<Integer, Integer> MapTempsDeVie = new HashMap<>();
+    public static HashMap<Integer, Integer> MapTempsDeVie = new HashMap<>() {{
+        put(8, 20);
+         put(32, 20);
+    }};
     
     public static int RecupererTempsDeVie(int numeroCellule) {
         if (MapTempsDeVie.containsKey(numeroCellule)) {

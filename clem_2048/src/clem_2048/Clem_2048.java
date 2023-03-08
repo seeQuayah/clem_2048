@@ -12,14 +12,23 @@ public class Clem_2048 {
 
     public static void main(String[] args) {
         Grid grille = new Grid(3, 5);
-        grille.afficherGrille();
-        grille.BougerGrille(Grid.Direction.DROITE);
+        System.out.println("Init");
+        grille.afficherGrille();//print
+        grille.deplacerBas();
+        System.out.println("bas");
+        grille.afficherGrille();//print
         grille.generationCellule();
-        grille.afficherGrille();
-        grille.BougerGrille(Grid.Direction.BAS);
-        grille.afficherGrille();
+        System.out.println("gen cell");
+        grille.afficherGrille();//print
+        grille.deplacerBas();
+        System.out.println("bas");
+        grille.afficherGrille();//print
         grille.generationCellule();
-        grille.BougerGrille(Grid.Direction.DROITE);
+        System.out.println("gen cell");
+        grille.afficherGrille();//print
+        grille.deplacerDroite();
+        System.out.println("droite");
+        grille.afficherGrille();//print
 
 
     }

@@ -14,7 +14,7 @@ public class Cell {
     private int x;
     private int y;
     private int contenu;
-    private int prochainContenu;
+    public boolean hasChanged;
     
     public Cell(int x, int y, int size, int contenu) {
         this.debutTimer = Instant.now();
@@ -23,15 +23,6 @@ public class Cell {
         this.size = size;
         this.contenu = contenu;
         this.tempsDeVie = Regles.RecupererTempsDeVie(contenu);
-        this.prochainContenu = contenu;
-    }
-
-    public int getProchainContenu() {
-        return prochainContenu;
-    }
-
-    public void setProchainContenu(int prochainContenu) {
-        this.prochainContenu = prochainContenu;
     }
     
     public boolean estVide() {
@@ -44,6 +35,12 @@ public class Cell {
 
     public void setContenu(int contenu) {
         this.contenu = contenu;
+        this.tempsDeVie = Regles.RecupererTempsDeVie(contenu);
+    }
+    
+    public void tuerCellule() {
+        this.contenu = 0;
+        this.tempsDeVie = -1;
     }
     
     public boolean isAlive() {
@@ -60,5 +57,10 @@ public class Cell {
 
     int getX() {
         return x;
+    }
+    
+    @Override
+    public String toString() {
+        return String.format("%d", this.getContenu());
     }
 }
