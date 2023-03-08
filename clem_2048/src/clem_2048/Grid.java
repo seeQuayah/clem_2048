@@ -42,6 +42,7 @@ public class Grid {
     }
     
     private ArrayList<int[]> getCellulesVides() {
+        //On recupere un tableau de coordonnees de cellules vides (pour pouvoir faire spawn de nouvelles)
         ArrayList<int[]> result = new ArrayList<>();
         for (int i = 0; i < this.size; i++) {
             for (int j = 0; j < this.size; j++) {
@@ -71,12 +72,14 @@ public class Grid {
         this.grille[index2 / size][index2 % size].setContenu(2); //on convertit la coordonnee 1d en 2d avec / et %
     }
     
-    public void generationCellule() {
+    public boolean generationCellule() {
         ArrayList<int[]> coorCellulesVides = getCellulesVides();
-
+        if (coorCellulesVides.isEmpty())
+            return false;
         int index1 = random.nextInt(coorCellulesVides.size());
         int [] coord = coorCellulesVides.get(index1);
         this.grille[coord[0]][coord[1]].setContenu(2);
+        return true;
     }
     
     public void resetupGrille() {
@@ -197,9 +200,21 @@ public class Grid {
             }
         }
     }
+    
+    public int highScore() {
+        int highest = 0;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                int valeur = grille[i][j].getContenu();
+                highest = valeur > highest ? valeur : highest;
+            }
+        }
+        return highest;
+    }
 
 
     public void tuerCellulesExpirees() {
+        //On check si les cellules avec un timer vont crever ou non, si oui on les degage
         for (int i = 0; i < size; i++) {
             for (int j =0; j < size; j++) {
                 Cell cellule = grille[i][j];
@@ -211,6 +226,7 @@ public class Grid {
     }
 
     public void afficherGrille() {
+        //affiche la grille
         System.out.print("+");
         for (int i = 0; i < size * (size * 2) + 2; i++) {
             System.out.print("-");

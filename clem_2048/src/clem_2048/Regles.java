@@ -6,10 +6,7 @@ package clem_2048;
 
 import java.util.HashMap;
 
-/**
- *
- * @author jc
- */
+
 public class Regles {
     public static HashMap<Integer, Integer> MapTempsDeVie = new HashMap<>() {{
          put(8, 5);

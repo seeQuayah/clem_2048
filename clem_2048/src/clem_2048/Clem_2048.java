@@ -4,34 +4,12 @@
  */
 package clem_2048;
 
-/**
- *
- * @author jc
- */
+
 public class Clem_2048 {
 
     public static void main(String[] args) {
         Jeu jeu = new Jeu();
         jeu.loop();
-        /*Grid grille = new Grid(3, 5);
-        System.out.println("Init");
-        grille.afficherGrille();//print
-        grille.deplacerBas();
-        System.out.println("bas");
-        grille.afficherGrille();//print
-        grille.generationCellule();
-        System.out.println("gen cell");
-        grille.afficherGrille();//print
-        grille.deplacerBas();
-        System.out.println("bas");
-        grille.afficherGrille();//print
-        grille.generationCellule();
-        System.out.println("gen cell");
-        grille.afficherGrille();//print
-        grille.deplacerDroite();
-        System.out.println("droite");
-        grille.afficherGrille();//print*/
-
 
     }
     

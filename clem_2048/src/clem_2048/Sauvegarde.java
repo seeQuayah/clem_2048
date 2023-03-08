@@ -13,10 +13,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author jc
- */
 public class Sauvegarde {
     public static void sauvegarderGrille(Grid grille) {
         try {
