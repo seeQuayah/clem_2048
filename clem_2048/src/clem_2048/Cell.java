@@ -14,7 +14,7 @@ public class Cell {
     private int x;
     private int y;
     private int contenu;
-    public boolean hasChanged;
+    public boolean contenuAChange;
     
     public Cell(int x, int y, int size, int contenu) {
         this.debutTimer = Instant.now();

@@ -11,7 +11,9 @@ package clem_2048;
 public class Clem_2048 {
 
     public static void main(String[] args) {
-        Grid grille = new Grid(3, 5);
+        Jeu jeu = new Jeu();
+        jeu.loop();
+        /*Grid grille = new Grid(3, 5);
         System.out.println("Init");
         grille.afficherGrille();//print
         grille.deplacerBas();
@@ -28,7 +30,7 @@ public class Clem_2048 {
         grille.afficherGrille();//print
         grille.deplacerDroite();
         System.out.println("droite");
-        grille.afficherGrille();//print
+        grille.afficherGrille();//print*/
 
 
     }
