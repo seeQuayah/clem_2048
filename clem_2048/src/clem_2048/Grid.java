@@ -33,6 +33,10 @@ public class Grid {
     public int getSize() {
         return size;
     }
+    
+    public Cell[][] getGrille() {
+        return grille;
+    }
     private Cell getCellule(int y, int x) {
         return this.grille[y][x];
     }

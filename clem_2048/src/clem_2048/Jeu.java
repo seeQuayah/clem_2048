@@ -1,7 +1,11 @@
 
 package clem_2048;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,11 +32,21 @@ public class Jeu {
         }
     }
     void loop() {
-        System.out.println("Entrez la taille de la grille:");
-        int tailleGrille = scanner.nextInt();
+        Grid grille = null;
+        if (new File("sauvegarde.txt").exists()) {
+            try {
+                grille = Sauvegarde.chargerSauvegarde();
+            } catch (IOException ex) {
+                Logger.getLogger(Jeu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+             System.out.println("Entrez la taille de la grille:");
+            int tailleGrille = scanner.nextInt();
+            
+            grille = new Grid(tailleGrille, 5);
+        }
         System.out.println("Entrez le score max:");
         int scoreMax = scanner.nextInt();
-        Grid grille = new Grid(tailleGrille, 5);
         grille.afficherGrille();
 
         while (true) {
@@ -52,6 +66,7 @@ public class Jeu {
                 System.out.println("Gagné!");
                 break;
             }
+            Sauvegarde.sauvegarderGrille(grille);
         }
     }
 }
