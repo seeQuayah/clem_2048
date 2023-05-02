@@ -81,4 +81,22 @@ public class Cell {
     public String toString() {
         return String.format("%d", this.getContenu());
     }
+    
+    public String getNomAtom() {
+
+        switch (this.getContenu()) {
+            case 2: return "²H";
+            case 4: return  "⁴He";
+            case 8: return "⁸Be";
+            case 16: return "¹⁶O";
+            case 32: return "³²S";
+            case 64: return "⁶⁴Zn";
+            case 128: return "¹²⁸Xe";
+            case 256: return "²⁵⁶Fm";
+            case 512: return "⁵¹²Mt";
+            case 1024: return "¹⁰²⁴Rf";
+            case 2048: return "²⁰⁴⁸No";
+            default: return "";
+        }
+    }
 }
